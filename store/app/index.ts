@@ -1,6 +1,10 @@
-import { observable, action } from 'mobx'
+import { action, makeAutoObservable, observable } from 'mobx'
 
 class AppStore {
+  constructor() {
+    makeAutoObservable(this)
+  }
+
   @observable currency: any = null
   @observable storeConfig: any = null
 
