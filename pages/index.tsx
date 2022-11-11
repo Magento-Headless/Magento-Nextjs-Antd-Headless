@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import { NextPage } from 'next/types'
 import { Button } from 'antd'
 import styled from 'styled-components'
 

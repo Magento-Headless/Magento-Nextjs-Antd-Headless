@@ -1,11 +1,16 @@
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
+import { Provider } from 'mobx-react'
 import { ThemeProvider } from 'styled-components'
+
+import stores from '../store'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider theme={{}}>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider {...stores}>
+      <ThemeProvider theme={{}}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   )
 }
 
