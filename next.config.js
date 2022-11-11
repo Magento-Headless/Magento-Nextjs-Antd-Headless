@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const isProd = process.env.NODE_ENV === 'production'
 
-module.exports = (phase, { defaultConfig }) => {
+module.exports = () => {
   /**
    * @type {import('next').NextConfig}
    */
