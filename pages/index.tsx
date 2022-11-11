@@ -8,7 +8,6 @@ export const StyledMain = styled.main`
 `
 
 const Home: NextPage = () => {
-  console.log(Button)
   return (
     <div>
       <StyledMain>
