@@ -16,6 +16,17 @@ module.exports = (phase, { defaultConfig }) => {
     distDir: '.next',
     generateEtags: false,
     pageExtensions: ['tsx', 'ts'],
+    compiler: {
+      styledComponents: {
+        ssr: true,
+        displayName: true,
+        fileName: false,
+        minify: true,
+        namespace: 'headless',
+        pure: true,
+        transpileTemplateLiterals: true
+      }
+    },
     experimental: {
       swcPlugins: [
         [
@@ -28,18 +39,6 @@ module.exports = (phase, { defaultConfig }) => {
               style: 'antd/lib/${member}/style',
               memberTransformers: ['dashed_case']
             }
-          }
-        ],
-        [
-          '@swc/plugin-styled-components',
-          {
-            namespace: 'headless',
-            ssr: true,
-            displayName: true,
-            fileName: false,
-            minify: true,
-            pure: true,
-            transpileTemplateLiterals: true
           }
         ]
       ]
