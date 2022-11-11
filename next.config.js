@@ -13,7 +13,7 @@ module.exports = () => {
     reactStrictMode: true,
     swcMinify: true,
     compress: false,
-    distDir: '.next',
+    distDir: 'build',
     generateEtags: false,
     pageExtensions: ['tsx', 'ts'],
     compiler: {
