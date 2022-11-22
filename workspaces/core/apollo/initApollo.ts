@@ -78,9 +78,7 @@ const createApolloClient = ({ cookies, reduxState, domain }: ApolloStruct) => {
         if (isServer) {
           console.error(graphQLErrors[index].message)
         } else {
-          window.snackbar.open(graphQLErrors[index].message, {
-            variant: 'warning'
-          })
+          console.error(graphQLErrors[index].message)
         }
       })
     }
@@ -89,9 +87,7 @@ const createApolloClient = ({ cookies, reduxState, domain }: ApolloStruct) => {
       if (isServer) {
         console.error(`[Network error]: ${networkError}`)
       } else {
-        window.snackbar.open(networkError, {
-          variant: 'warning'
-        })
+        console.error(networkError)
       }
     }
   })
