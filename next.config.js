@@ -1,15 +1,16 @@
 const withAntdLess = require('next-plugin-antd-less')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
-})
+const withBundleAnalyzer = require('@next/bundle-analyzer')
+
+const system = require('./config/system')
 
 const isProd = process.env.NODE_ENV === 'production'
+const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
 
 module.exports = () => {
   /**
    * @type {import('next').NextConfig}
    */
-  const nextConfig = withAntdLess({
+  const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     compress: false,
@@ -21,8 +22,8 @@ module.exports = () => {
         ssr: true,
         displayName: true,
         fileName: false,
-        minify: true,
-        namespace: 'headless',
+        minify: isProd,
+        namespace: 'turbo',
         pure: true,
         transpileTemplateLiterals: true
       }
@@ -30,7 +31,7 @@ module.exports = () => {
     experimental: {
       swcPlugins: [
         [
-          'swc-plugin-another-transform-imports',
+          'swc-plugin-transform-imp',
           {
             antd: {
               transform: 'antd/lib/${member}',
@@ -53,7 +54,20 @@ module.exports = () => {
       // Important: return the modified config
       return config
     }
+  }
+
+  const defaultConfig = withAntdLess({
+    ...nextConfig,
+    modifyVars: system.antd.variables
   })
 
-  return isProd ? withBundleAnalyzer(nextConfig) : nextConfig
+  const plugins = []
+
+  if (isAnalyzer) plugins.push(
+    withBundleAnalyzer({
+      enabled: true
+    })
+  )
+  
+  return plugins.reduce((acc, plugin) => plugin(acc), { ...defaultConfig })
 }

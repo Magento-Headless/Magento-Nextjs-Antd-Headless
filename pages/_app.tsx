@@ -1,16 +1,16 @@
 import { AppProps } from 'next/app'
-import { Provider } from 'mobx-react'
+import { ConfigProvider } from 'antd'
 import { ThemeProvider } from 'styled-components'
 
-import stores from '../store'
+import { theme } from '@config/theme'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <Provider {...stores}>
-      <ThemeProvider theme={{}}>
+    <ThemeProvider theme={theme}>
+      <ConfigProvider prefixCls={theme.prefix}>
         <Component {...pageProps} />
-      </ThemeProvider>
-    </Provider>
+      </ConfigProvider>
+    </ThemeProvider>
   )
 }
 
