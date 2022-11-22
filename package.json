@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build && touch ./_next/.nojekyll",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
