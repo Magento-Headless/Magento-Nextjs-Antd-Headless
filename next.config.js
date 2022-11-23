@@ -1,4 +1,4 @@
-const withAntdLess = require('next-plugin-antd-less')
+const withAntdLess = require('next-plugin-antd-design')
 const withBundleAnalyzer = require('@next/bundle-analyzer')
 
 const system = require('./config/system')
@@ -56,12 +56,11 @@ module.exports = () => {
     }
   }
 
-  const defaultConfig = withAntdLess({
-    ...nextConfig,
-    modifyVars: system.antd.variables
-  })
-
-  const plugins = []
+  const plugins = [
+    withAntdLess({
+      modifyVars: system.antd.variables
+    })
+  ]
 
   if (isAnalyzer) plugins.push(
     withBundleAnalyzer({
@@ -69,5 +68,5 @@ module.exports = () => {
     })
   )
   
-  return plugins.reduce((acc, plugin) => plugin(acc), { ...defaultConfig })
+  return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

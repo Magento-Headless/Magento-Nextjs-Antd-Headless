@@ -28,7 +28,7 @@
     "http-proxy-middleware": "^2.0.6",
     "lodash": "^4.17.21",
     "next": "^12.3.4",
-    "next-plugin-antd-less": "^1.8.0",
+    "next-plugin-antd-design": "^0.3.0",
     "nookies": "^2.5.2",
     "pm2": "^5.2.2",
     "react": "^18.2.0",
